@@ -1105,25 +1105,17 @@ local vu147 = {
                 }
             end
         end
-        local vu138 = v125
-        local v139 = nil
-        local vu140 = nil
-        while true do
-            local vu141
-            vu140, vu141 = v125(v139, vu140)
-            if vu140 == nil then
-                break
-            end
-            vu140:GetPropertyChangedSignal("Position"):Connect(function()
-                if not vu141[3] then
-                    vu138[vu140][3] = true
-                    vu140.CFrame = vu141[1]
-                    vu140.Rotation = vu141[2]
-                    task.wait()
-                    vu138[vu140][3] = false
-                end
-            end)
+for part, data in pairs(v125) do
+    part:GetPropertyChangedSignal("Position"):Connect(function()
+        if not data[3] then
+            data[3] = true
+            part.CFrame = data[1]
+            part.Rotation = data[2]
+            task.wait()
+            data[3] = false
         end
+    end)
+end
     end,
     QualityOfLifeImprover = function()
         local v142 = Instance.new("Sky", vu60)
